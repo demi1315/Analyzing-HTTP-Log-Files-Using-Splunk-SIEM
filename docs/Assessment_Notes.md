@@ -4,85 +4,82 @@
 
 ## 🎯 Assessment Objective
 
-This assessment was conducted to **simulate a real-world SOC monitoring scenario**, where HTTP server logs are ingested into a SIEM platform and analyzed to detect **abnormal behavior, potential reconnaissance, and early indicators of attack activity**.
+This assessment was performed to simulate a **SOC analyst workflow** for analyzing HTTP access logs using Splunk SIEM. The focus of the exercise was to understand how raw web server logs are ingested, parsed, and analyzed to identify abnormal behavior and security-relevant patterns.
 
-Rather than focusing on exploitation, the goal was to practice **log-driven investigation and analyst decision-making**, which forms the foundation of Security Operations Center (SOC) work.
-
----
-
-## 🧭 Analyst Workflow Overview
-
-The investigation followed a **SOC-aligned workflow** commonly used in operational environments:
-
-1️⃣ **Log ingestion and validation**  
-2️⃣ **Baseline traffic understanding**  
-3️⃣ **Anomaly identification**  
-4️⃣ **Threat interpretation**  
-5️⃣ **Risk context and response consideration**
-
-This mirrors how analysts move from raw telemetry to actionable insight.
+The assessment emphasizes **log onboarding, field extraction, and analyst-driven investigation**, rather than real-time alerting or exploitation.
 
 ---
 
-## 📥 Log Ingestion & Validation
+## 🧪 Assessment Scope
 
-HTTP access logs were ingested into **Splunk Enterprise** using file-based ingestion.
+✔ Manual ingestion of HTTP access logs  
+✔ Source type and index configuration  
+✔ Regex-based field extraction  
+✔ SPL-based traffic analysis  
+✔ Error and anomaly investigation  
+✔ Suspicious source identification  
 
-Key validation steps included:
-- Ensuring timestamps were parsed correctly  
-- Verifying key HTTP fields were extracted  
-- Confirming events were searchable and consistent  
-
-This step is critical — **poor ingestion leads to poor detection**.
-
----
-
-## 📊 Baseline Traffic Analysis
-
-Before flagging anomalies, normal behavior was observed to establish a baseline.
-
-Baseline analysis focused on:
-- Typical request volume patterns  
-- Common HTTP methods and endpoints  
-- Normal response code distribution  
-- Expected user-agent behavior  
-
-Understanding “normal” traffic is essential to **avoid false positives**.
+❌ No forwarders  
+❌ No live traffic  
+❌ No dashboards  
+❌ No automated alerts  
+❌ No attack simulation  
 
 ---
 
-## 🚨 Anomaly Identification Approach
+## 📥 Log Ingestion Methodology
 
-Once a baseline was established, attention shifted to **deviations**, including:
+Sample HTTP access logs were prepared in text format and uploaded into Splunk using the web interface.
 
-- Sudden spikes in request volume  
-- Repeated requests from a single source  
-- Excessive error responses  
-- Unusual HTTP methods  
-- Irregular or automated user-agent strings  
+**Ingestion Method**
+- Splunk Web → *Settings → Add Data → Upload*
 
-These signals often represent **early-stage attack activity**.
+**Validation Steps**
+- Confirmed events were indexed successfully  
+- Verified logs were searchable  
+- Ensured correct metadata assignment  
 
----
-
-## 🧠 Analyst Interpretation
-
-Not every anomaly is malicious. Each finding was interpreted by asking:
-
-- Is this behavior consistent with legitimate usage?  
-- Does it repeat over time?  
-- Is it isolated or correlated with other signals?  
-
-This step reflects **analyst judgment**, not blind alerting.
+This approach mirrors how analysts often ingest historical or offline log data during investigations.
 
 ---
 
-## 📝 Purpose of This Document
+## ⚙️ Source Type & Index Handling
 
-This document demonstrates:
-- SOC-style investigative thinking  
-- Structured log analysis methodology  
-- Ability to reason about security signals  
-- Professional documentation practices  
+During ingestion:
+- An HTTP-appropriate sourcetype was selected  
+- Index and host values were reviewed  
+- Configuration was validated before submission  
 
-All analysis was performed using **lab-generated log data for defensive learning purposes**.
+Correct sourcetype selection ensured **consistent parsing and reliable SPL querying**.
+
+---
+
+## 🧱 Field Extraction Strategy
+
+Manual field extraction was performed using Splunk’s **Extract New Fields** feature with regular expressions.
+
+Fields extracted included:
+- Source IP  
+- Destination IP  
+- Request method  
+- HTTP status  
+- Status code  
+- Source port  
+- Destination port  
+
+This step transformed unstructured log data into **structured, query-ready fields**.
+
+---
+
+## 🧠 Analyst Perspective
+
+This assessment reinforces the importance of:
+- Understanding data before detection  
+- Prioritizing accuracy over automation  
+- Applying analyst judgment when interpreting anomalies  
+
+---
+
+## 📌 Documentation Purpose
+
+This document demonstrates **SOC-aligned log ingestion, parsing, and analysis methodology**, consistent with blue-team monitoring practices.
